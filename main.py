@@ -1,18 +1,62 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def print_field(field):
+    lines = []
+    for row in field:
+        lines.append(" " + " | ".join(row) + " ")
+    print("\n — + — + — \n".join(lines))
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def get_player_move():
+    # todo: добавить обработку ошибок
+    row = int(input("Введите строку (0, 1 или 2): "))
+    col = int(input("Введите столбик (0, 1 или 2): "))
+    return row, col
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def update_field(field, row, col, player_symbol):
+    if field[row][col] == " ":
+        field[row][col] = player_symbol
+        return True
+    else:
+        print("Клетка уже занята. Попробуй снова\n")
+        return False
+
+
+def check_win(field, current_player):
+    return False
+
+
+def check_draw(field):
+    return False
+
+
+def tick_tac_toe():
+    field = [
+        [" ", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "]
+    ]
+    current_player = "X"
+
+    while True:
+        print_field(field)
+        print(f"Ход игрока {current_player}")
+
+        row, col = get_player_move()
+        if update_field(field, row, col, current_player):
+            if check_win(field, current_player):
+                print_field(field)
+                print(f"Игрок {current_player} победил")
+                break
+
+            if check_draw(field):
+                print_field(field)
+                print(f"Ничья!")
+                break
+
+            if current_player == "X":
+                current_player = "O"
+            else:
+                current_player = "X"
+
+
+tick_tac_toe()
