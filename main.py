@@ -57,7 +57,7 @@ def check_draw(field):
     return False
 
 
-def tick_tac_toe():
+def tic_tac_toe():
     field = [
         [EMPTY, EMPTY, EMPTY],
         [EMPTY, EMPTY, EMPTY],
@@ -91,4 +91,4 @@ def tick_tac_toe():
                 current_player = X_SYMBOL
 
 
-tick_tac_toe()
+tic_tac_toe()
